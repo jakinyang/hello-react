@@ -4,9 +4,10 @@ import './index.css';
 
 const Button = (props) => {
   // your code here
+  
   return (
-    <button>
-      {props.text}
+    <button onClick={props.reset}>
+      Reset
     </button>
   )
 };
@@ -14,16 +15,18 @@ const Button = (props) => {
 const Application = () => {
 
   // your code here
-
+  const [text, setText] = useState('Bacon');
   const reset = () => {
     console.log("reset");
     // your code here
+    setText('');
   };
 
   return (
     <main>
-      <Button text="Reset" />
-      <h1>Hello React</h1>
+      <input value={text} onChange={(event) => setText(event.target.value)} placeholder="Type something!"></input>
+      <Button reset={reset} />
+      {text ? <h1>Hello {text}</h1> : <h1>Hello Bacon</h1>}
     </main>
   );
 };
